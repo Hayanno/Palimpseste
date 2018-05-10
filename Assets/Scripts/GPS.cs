@@ -1,19 +1,18 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class GPS : MonoBehaviour {
-    public float longitude = 0.0f;
-    public float latitude = 0.0f;
+    public float refreshRate = 1f;
+    public int timeOutInSecond = 20;
 
-    // 43.185877, 5.569368 => maison
-    Text text;
+    [HideInInspector]
+    public float longitude = 0.0f;
+    [HideInInspector]
+    public float latitude = 0.0f;
 
     void Start() {
         Input.location.Start();
         StartCoroutine(StartGPS());
-        text = GetComponent<Text>();
     }
 
     IEnumerator StartGPS() {
@@ -21,7 +20,7 @@ public class GPS : MonoBehaviour {
             yield break;
 
         // Wait until service initializes
-        int maxWait = 20;
+        int maxWait = timeOutInSecond;
 
         while (Input.location.status == LocationServiceStatus.Initializing && maxWait > 0) {
             yield return new WaitForSeconds(1);
@@ -37,9 +36,15 @@ public class GPS : MonoBehaviour {
             print("Unable to determine device location");
             yield break;
         } else {
+            StartCoroutine(UpdateData());
+        }
+    }
+
+    IEnumerator UpdateData() {
+        for (;;) {
             latitude = Input.location.lastData.latitude;
             longitude = Input.location.lastData.latitude;
-            text.text = "Location: " + Input.location.lastData.latitude + " " + Input.location.lastData.longitude + " " + Input.location.lastData.altitude + " " + Input.location.lastData.horizontalAccuracy + " " + Input.location.lastData.timestamp;
+            yield return new WaitForSeconds(refreshRate);
         }
     }
 }

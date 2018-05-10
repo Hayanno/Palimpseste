@@ -1,0 +1,50 @@
+{
+	"title": "Titre test",
+	"pointOfInterests": [
+		{
+			"id": "1",
+			"title": "title1",
+			"image": "image1.png"
+		},
+		{
+			"id": "2",
+			"title": "title2",
+			"image": "image2.png"
+		},
+		{
+			"id": "3",
+			"title": "title3",
+			"image": "image3.png"
+		},
+		{
+			"id": "4",
+			"title": "title4",
+			"image": "image4.png"
+		},
+		{
+			"id": "5",
+			"title": "title5",
+			"image": "image5.png"
+		},
+		{
+			"id": "6",
+			"title": "title6",
+			"image": "image6.png"
+		},
+		{
+			"id": "7",
+			"title": "title7",
+			"image": "image7.png"
+		},
+		{
+			"id": "8",
+			"title": "title8",
+			"image": "image8.png"
+		},
+		{
+			"id": "9",
+			"title": "title9",
+			"image": "image9.png"
+		}
+	]
+}
